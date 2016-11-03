@@ -18,11 +18,11 @@
 #define TLW 36 /* weights for copying color from a different position. */
 #define TW 43
 #define LW 65
-#define TRW 68
-#define RW 75
-#define BLW 86
-#define BRW 128
-#define BW 188
+#define TRW 192//68
+#define RW 192//75
+#define BLW 192//86
+#define BRW 192//128
+#define BW 192//188
 #define WEIGHT_RANGE 192
 
 int main(int argc , char **argv) {
@@ -57,7 +57,7 @@ int main(int argc , char **argv) {
 
 	bmp.seed(color_seed, our_random);
 
-	bmp.for_each_pixel([our_random](std::vector<std::vector<RGBTRIPLE>>& matrix, const size_t& i, const size_t& j, std::minstd_rand0& random){
+	bmp.for_each_pixel([](std::vector<std::vector<RGBTRIPLE>>& matrix, const size_t& i, const size_t& j, std::minstd_rand0& random){
 		size_t r = random() % WEIGHT_RANGE;
 
 		if (r < TLW) {
