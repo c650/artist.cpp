@@ -10,15 +10,15 @@
 
 #include "./bmp.h"
 
-#define WIDTH 500
+#define WIDTH 1000
 #define HEIGHT WIDTH
 
-#define TLW 36 /* weights for copying color from a different position. */
-#define TW 43
-#define LW 192//50
-#define TRW 192//68
+#define TLW 192//36 /* weights for copying color from a different position. */
+#define TW 192//43
+#define LW 130//65
+#define TRW 68
 #define RW 75
-#define BLW 86
+#define BLW 192//86
 #define BRW 128
 #define BW 188
 #define WEIGHT_RANGE 192
@@ -40,24 +40,7 @@ int main(int argc , char **argv) {
 		std::exit(2);
 	}
 
-	BITMAPFILEHEADER bmp_fh;
-	bmp_fh.bfType = 0x4d42;
-	bmp_fh.bfOffBits = 54;
-	bmp_fh.bfReserved1 = bmp_fh.bfReserved2 = 0;
-	bmp_fh.bfOffBits = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
-
-	BITMAPINFOHEADER bmp_ih;
-	bmp_ih.biSize = 40;
-	bmp_ih.biWidth = WIDTH;
-	bmp_ih.biHeight = HEIGHT;
-	bmp_ih.biPlanes = 1;
-	bmp_ih.biBitCount = 24;
-	bmp_ih.biCompression = 0;
-	bmp_ih.biSizeImage = 0;
-	bmp_ih.biXPelsPerMeter = 10; /* idk */
-	bmp_ih.biYPelsPerMeter = 10;
-	bmp_ih.biClrUsed = 0;
-	bmp_ih.biClrImportant = 0;
+	Bitmap bmp(HEIGHT, WIDTH);
 
 	outfile.write((char*)&bmp_fh , sizeof(BITMAPFILEHEADER));
 	outfile.write((char*)&bmp_ih , sizeof(BITMAPINFOHEADER));
@@ -67,7 +50,7 @@ int main(int argc , char **argv) {
 
 	std::minstd_rand0 our_random(std::chrono::system_clock::now().time_since_epoch().count());
 
-	std::vector<RGBTRIPLE> color_seed(50);
+	std::vector<RGBTRIPLE> color_seed(our_random() % 45 + 5);
 	for (auto& e : color_seed) {
 		e = {
 			(BYTE)(our_random() % 256),

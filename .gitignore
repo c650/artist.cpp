@@ -1,3 +1,4 @@
 *.o
 *.bmp
 images/
+.DS_Store
