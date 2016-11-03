@@ -20,7 +20,9 @@ public:
 
 	Bitmap(DWORD height, DWORD width);
 
-	void write_to(std::fstream& outfile);
+	void write_to(std::fstream& outfile) const;
+
+	void process();
 
 	template <class RandomGenerator>
 	void seed(const std::vector<RGBTRIPLE>& colors, RandomGenerator& r) {
@@ -38,7 +40,6 @@ public:
 
 private:
 	void init();
-
 
 };
 
