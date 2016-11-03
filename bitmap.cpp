@@ -1,7 +1,10 @@
 #include "./bitmap.h"
 #include "./bmp.h"
 
+#include <functional>
 #include <vector>
+#include <fstream>
+#include <random>
 
 Bitmap::Bitmap() {
 	init();
@@ -40,7 +43,7 @@ void Bitmap::init() {
 	matrix.resize(bmp_ih.biHeight, std::vector<RGBTRIPLE>(bmp_ih.biWidth));
 }
 
-std::fstream& Bitmap::operator<<(std::fstream& outfile, const Bitmap& bmp) {
+void Bitmap::write_to(std::fstream& outfile) {
 	outfile.write( (char*)&bmp_fh , sizeof(BITMAPFILEHEADER) );
 	outfile.write( (char*)&bmp_ih , sizeof(BITMAPINFOHEADER) );
 

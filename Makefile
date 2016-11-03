@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS= --std=c++11 -Wall -Werror
-SRC = main.cpp bitmap.cpp
+SRC = bitmap.cpp main.cpp
 OUT = artist.o
 
 build: ${SRC}

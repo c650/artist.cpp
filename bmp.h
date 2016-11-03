@@ -7,8 +7,8 @@
  * BMP-related data types based on Microsoft's own.
  */
 
- #ifndef BMP_H
- #define BMP_H
+#ifndef BMP_H
+#define BMP_H
 
 #include <stdint.h>
 
